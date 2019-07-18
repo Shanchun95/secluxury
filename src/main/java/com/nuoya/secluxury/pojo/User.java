@@ -1,20 +1,27 @@
 package com.nuoya.secluxury.pojo;
 
-public class User {
-    private int id;
-    private String userName;
-    private String password;
-    private int level;
+import io.swagger.annotations.ApiModelProperty;
 
+public class User {
+    @ApiModelProperty("用户名称")
+    private String userName;
+    @ApiModelProperty("用户密码")
+    private String password;
+    @ApiModelProperty("用户头像")
+    private String imageUrl;
+    @ApiModelProperty("用户性别")
+    private int sex;
+    @ApiModelProperty("用户地址")
+    private int address;
     public User() {
     }
 
-    public int getId() {
-        return id;
+    public int getAddress() {
+        return address;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAddress(int address) {
+        this.address = address;
     }
 
     public String getUserName() {
@@ -33,21 +40,29 @@ public class User {
         this.password = password;
     }
 
-    public int getLevel() {
-        return level;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
+                "userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
-                ", level=" + level +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", sex=" + sex +
                 '}';
     }
 }

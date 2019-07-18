@@ -12,4 +12,10 @@ public interface UserMapper {
     int login(User user);
 
     List<User> getUserList();
+
+    int selectByName(User user);
+
+    int addUser(User user);
+
+
 }

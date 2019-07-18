@@ -7,5 +7,7 @@ import java.util.List;
 public interface UserService {
     int login(User user);
 
-    List<User> getUserList();
+    int selectByName(User user);
+
+    int addUser(User user);
 }
