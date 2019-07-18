@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nuoya.secluxury.mapper.GoodsMapper">
+
+    <select id="selectAllGoodsBy" parameterType="map" resultType="Goods">
+        select g.goods_id,g.goods_name,g.goods_size,g.image_id,g.brand_id,g.goods_detail,g.type_id,g.goods_new,
+        g.people_type,g.post_price,g.delivery_time_id,g.publish_user,g.receive_user,g.oredr_status,g.identify_status,
+        g.goods_price,g.platform_price,g.market_price,g.creatr_time,
+        br.brand,
+        img.image_url,
+        ty.type,
+        de.delivery_time
+        from goods g
+        left join goods_brand br on br.id = g.goods_id
+        left join goods_image img on img.goods_id = g.goods_id
+        left join goods_type ty on ty.type_id = g.type_id
+        left join delivery de on de.delivery_id = g.delivery_time_id
+        <where>
+            <if test="map">
+
+            </if>
+        </where>
+
+    </select>
+</mapper>
