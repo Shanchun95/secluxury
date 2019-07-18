@@ -16,7 +16,7 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public List<Goods> selectAllGoodsBy(Map<String, String> map) {
-        List<Goods> goodsList = goodsMapper.selectAllGoodsBy(map);
-        return goodsList;
+     //   List<Goods> goodsList = goodsMapper.selectAllGoodsBy(map);
+      return null;
     }
 }
