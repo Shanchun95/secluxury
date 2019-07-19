@@ -25,7 +25,6 @@ public class SecluxuryApplication {
     @Value("${spring.redis.port}")
     int port ;
 
-
     @Bean  // <bean id='' class=“”/>
     public JedisClient getJedisClient(){
         JedisClientPool jedisClient =new JedisClientPool();

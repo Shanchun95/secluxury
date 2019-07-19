@@ -6,5 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface GoodsService {
-    List<Goods> selectAllGoodsBy(Map<String, String> map);
+    List<Goods> selectAllGoodsBy(Map<String, Object> map);
+
+    List<Goods> selectAllGoods();
 }

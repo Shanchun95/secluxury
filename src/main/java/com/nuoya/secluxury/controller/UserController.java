@@ -65,7 +65,7 @@ public class UserController {
             return 1;
         }
     @RequestMapping("validateYzm")
-    @ApiOperation("用户注册功能，用户注册用户填写号验证码后台，对邮箱进行校验，如果用户邮箱已存在无法再次注册，已存在返回数字“ 1 ” 、不存在返回数字“ 0 ”")
+    @ApiOperation("用户注册功能，用户注册页面向后台传递一个“验证码”后台会对其进行校验，如果正确返回数字“ 1 ” 否则返回“ 0 ”")
     public int validateYzm(@ApiParam("用户收到的验证码") String u_yzm) {
         String h_yzm = jedisClient.get("yzm");
         if (u_yzm.equals(h_yzm)){

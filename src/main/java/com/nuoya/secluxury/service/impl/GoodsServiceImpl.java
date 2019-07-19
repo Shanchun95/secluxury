@@ -15,8 +15,14 @@ public class GoodsServiceImpl implements GoodsService {
     GoodsMapper goodsMapper;
 
     @Override
-    public List<Goods> selectAllGoodsBy(Map<String, String> map) {
-     //   List<Goods> goodsList = goodsMapper.selectAllGoodsBy(map);
-      return null;
+    public List<Goods> selectAllGoodsBy(Map<String, Object> map) {
+        List<Goods> goodsList = goodsMapper.selectAllGoodsBy(map);
+        return goodsList;
+    }
+
+    @Override
+    public List<Goods> selectAllGoods() {
+        List<Goods> goodsList = goodsMapper.selectAllGoods();
+        return goodsList;
     }
 }
