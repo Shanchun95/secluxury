@@ -1,7 +1,8 @@
 package com.nuoya.secluxury.pojo;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+@ApiModel("User是用户的实体类，需要取参数，则调用对应属性即可")
 public class User {
     @ApiModelProperty("用户名称")
     private String userName;
