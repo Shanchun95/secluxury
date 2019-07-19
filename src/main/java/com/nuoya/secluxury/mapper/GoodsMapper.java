@@ -1,14 +1,12 @@
 package com.nuoya.secluxury.mapper;
 
 import com.nuoya.secluxury.pojo.Goods;
-import org.mapstruct.Mapper;
-import org.springframework.stereotype.Component;
-
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 import java.util.Map;
 
-@Component
+@Mapper
 public interface GoodsMapper {
     List<Goods> selectAllGoodsBy(Map<String, String> map);
 }
