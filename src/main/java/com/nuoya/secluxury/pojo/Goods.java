@@ -29,10 +29,17 @@ public class Goods {
     private int typeId;
     @ApiModelProperty("商品种类")
     private String type;
-    @ApiModelProperty(value = "商品成色，9成新为90，全新为100，95新为95",example = "95")
-    private int goodsNew;
-    @ApiModelProperty(value = "适用人群，0：全部/1：男士/2：女士",example = "0")
-    private int peopleType;
+
+    @ApiModelProperty(value = "商品成色，9成新为90，全新为100，95新为95",example = "1")
+    private int goodsNewId;
+    @ApiModelProperty(value = "商品成色")
+    private String goodsNew;
+
+    @ApiModelProperty(value = "适用人群，1：全部/2：男士/3：女士",example = "1")
+    private int peopleTypeId;
+    @ApiModelProperty(value = "适用人群，1：全部/2：男士/3：女士",example = "1")
+    private String peopleType;
+
     @ApiModelProperty(value = "商品邮费",example = "12")
     private int postPrice;
 
@@ -45,8 +52,12 @@ public class Goods {
     private String publishUser;
     @ApiModelProperty("收货人姓名，同时通过这个姓名能得到收货人的所有信息，包括地址，电话等")
     private String receiveUser;
-    @ApiModelProperty(value = "价格分布状态，为状态值，对应下拉框固定的值！价格范围：1:x<1000/2:1000<x<5000/3:5000<x<1W/4:1W<x<10W/5:10W<x",example = "2")
-    private int priceStatus;
+
+    @ApiModelProperty(value = "价格分布状态，为状态值，对应下拉框值！价格范围：1:x<1000/2:1000<x<5000/3:5000<x<1W/4:1W<x<10W/5:10W<x",example = "2")
+    private int priceStatusId;
+    @ApiModelProperty(value = "价格分布状态，为状态值，对应下拉框值！价格范围：1:x<1000/2:1000<x<5000/3:5000<x<1W/4:1W<x<10W/5:10W<x",example = "2")
+    private String priceStatus;
+
     @ApiModelProperty(value = "订单状态：0发布状态，1下单状态，2已付款未发货，3已发货，4未接货，5已接货",example = "0")
     private int orderStatus;
     @ApiModelProperty(value = "鉴定状态：0未鉴定，1鉴定中，2鉴定已通过，3鉴定未通过",example = "2")
@@ -132,19 +143,35 @@ public class Goods {
         this.type = type;
     }
 
-    public int getGoodsNew() {
+    public int getGoodsNewId() {
+        return goodsNewId;
+    }
+
+    public void setGoodsNewId(int goodsNewId) {
+        this.goodsNewId = goodsNewId;
+    }
+
+    public String getGoodsNew() {
         return goodsNew;
     }
 
-    public void setGoodsNew(int goodsNew) {
+    public void setGoodsNew(String goodsNew) {
         this.goodsNew = goodsNew;
     }
 
-    public int getPeopleType() {
+    public int getPeopleTypeId() {
+        return peopleTypeId;
+    }
+
+    public void setPeopleTypeId(int peopleTypeId) {
+        this.peopleTypeId = peopleTypeId;
+    }
+
+    public String getPeopleType() {
         return peopleType;
     }
 
-    public void setPeopleType(int peopleType) {
+    public void setPeopleType(String peopleType) {
         this.peopleType = peopleType;
     }
 
@@ -188,11 +215,19 @@ public class Goods {
         this.receiveUser = receiveUser;
     }
 
-    public int getPriceStatus() {
+    public int getPriceStatusId() {
+        return priceStatusId;
+    }
+
+    public void setPriceStatusId(int priceStatusId) {
+        this.priceStatusId = priceStatusId;
+    }
+
+    public String getPriceStatus() {
         return priceStatus;
     }
 
-    public void setPriceStatus(int priceStatus) {
+    public void setPriceStatus(String priceStatus) {
         this.priceStatus = priceStatus;
     }
 
