@@ -1,7 +1,6 @@
 package com.nuoya.secluxury.service;
 
-import com.nuoya.secluxury.pojo.Brand;
-import com.nuoya.secluxury.pojo.Goods;
+import com.nuoya.secluxury.pojo.*;
 
 import java.util.List;
 import java.util.Map;
@@ -12,4 +11,10 @@ public interface GoodsService {
     List<Goods> selectAllGoods();
 
     List<Brand> selectAllBrand();
+
+    List<GoodsPriceStatus> selectAllPriceStatus();
+
+    List<GoodsPeopleType> selectAllPeopleType();
+
+    List<GoodsNew> selectAllGoodsNew();
 }

@@ -1,8 +1,7 @@
 package com.nuoya.secluxury.controller;
 
 
-import com.nuoya.secluxury.pojo.Brand;
-import com.nuoya.secluxury.pojo.Goods;
+import com.nuoya.secluxury.pojo.*;
 import com.nuoya.secluxury.service.GoodsService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -27,7 +26,7 @@ public class GoodsController {
 
     @RequestMapping("/serchgoods")
     @ApiOperation("该方法用于查询所有的商品，包括模糊查询，条件查询")
-    public List<Goods> selectAllGoodsBy(HttpServletResponse response, HttpServletRequest request, @ApiParam(value = "关键词搜索，传入String类型",defaultValue = "dfsdfs") String keyWords, @ApiParam("按照种类搜索,传Integer类型的值")Integer typeId, @ApiParam("按品牌搜索，传品牌id，Integer类型") Integer brandId, @ApiParam("按价格分段查询，传入状态值(Integer类型1、2、3、4、5)：价格范围：1:x<1000、2:1000<x<5000、3:5000<x<1W、4:1W<x<10W、5:10W<x") Integer priceStatus, @ApiParam("适用人群（Integer类型0、1、2）0：通用、1：男士、2：女士") Integer peopleType, @ApiParam("成色：95新则传int的95，9新传90，全新传值100") Integer goodsNew, @ApiParam("发布时间排序") String createTime, @ApiParam("价格升序") String priceAsc, @ApiParam("价格降序") String priceDesc) {
+    public List<Goods> selectAllGoodsBy(HttpServletResponse response, HttpServletRequest request, @ApiParam(value = "关键词搜索，传入String类型",defaultValue = "dfsdfs") String keyWords, @ApiParam("按照种类搜索,传Integer类型的值")Integer typeId, @ApiParam("按品牌搜索，传品牌id，Integer类型") Integer brandId, @ApiParam("按价格分段查询，传入状态值(Integer类型1、2、3、4、5)：价格范围：1:x<1000、2:1000<x<5000、3:5000<x<1W、4:1W<x<10W、5:10W<x") Integer priceStatus, @ApiParam("适用人群（Integer类型0、1、2）0：通用、1：男士、2：女士") Integer peopleType, @ApiParam("成色：95新则传int的95，9新传90，全新传值100") Integer goodsNew, @ApiParam("发布时间排序，传一个字符串createTime即可(前台应控制三个排序同时只能选一个！否则我后台的算法报错)") String createTime, @ApiParam("价格升序，传一个字符串priceAsc即可(前台应控制三个排序同时只能选一个！否则我后台的算法报错)") String priceAsc, @ApiParam("价格降序，传一个字符串priceDesc即可(前台应控制三个排序同时只能选一个！否则我后台的算法报错)") String priceDesc) {
         response.setHeader("Access-Control-Allow-Origin", "*");
 
         Map<String,Object> map = new HashMap<String,Object>();
@@ -51,14 +50,42 @@ public class GoodsController {
     @ApiOperation("后端用来测试的方法，前端不必使用")
     public List<Goods> selectAllGoods() {
         List<Goods> goodsList = goodsService.selectAllGoods();
+        System.out.println(goodsList);
         return goodsList;
     }
 
     @RequestMapping("/brandlist")
-    @ApiOperation("展示所有的品牌")
+    @ApiOperation("展示所有的品牌，供用户选择")
     public List<Brand> selectAllBrand() {
         List<Brand> brandList = goodsService.selectAllBrand();
         System.out.println(brandList);
         return brandList;
     }
+
+    @RequestMapping("/goodspricestatuslist")
+    @ApiOperation("展示商品的所有的价格范围，供用户选择")
+    public List<GoodsPriceStatus> selectAllPriceStatus() {
+        List<GoodsPriceStatus> goodsPriceStatusList = goodsService.selectAllPriceStatus();
+        System.out.println(goodsPriceStatusList);
+        return goodsPriceStatusList;
+    }
+
+    @RequestMapping("/peopletypelist")
+    @ApiOperation("展示所有适用人群，供用户选择")
+    public List<GoodsPeopleType> selectAllPeopleType() {
+        List<GoodsPeopleType> goodsPeopleTypeList = goodsService.selectAllPeopleType();
+        System.out.println(goodsPeopleTypeList);
+        return goodsPeopleTypeList;
+    }
+
+    @RequestMapping("/goodsnewlist")
+    @ApiOperation("展示商品的成色信息，供用户选择")
+    public List<GoodsNew> selectAllGoodsNew() {
+        List<GoodsNew> goodsNewList = goodsService.selectAllGoodsNew();
+        System.out.println(goodsNewList);
+        return goodsNewList;
+
+    }
+
+
 }

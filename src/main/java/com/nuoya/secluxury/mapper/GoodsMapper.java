@@ -1,7 +1,6 @@
 package com.nuoya.secluxury.mapper;
 
-import com.nuoya.secluxury.pojo.Brand;
-import com.nuoya.secluxury.pojo.Goods;
+import com.nuoya.secluxury.pojo.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
@@ -17,4 +16,10 @@ public interface GoodsMapper {
     List<Goods> selectAllGoods();
 
     List<Brand> selectAllBrand();
+
+    List<GoodsPriceStatus> selectAllPriceStatus();
+
+    List<GoodsPeopleType> selectAllPeopleType();
+
+    List<GoodsNew> selectAllGoodsNew();
 }
