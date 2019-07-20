@@ -96,6 +96,13 @@
             <artifactId>mail</artifactId>
             <version>1.4</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.thetransactioncompany</groupId>
+            <artifactId>cors-filter</artifactId>
+            <version>[ version ]</version>
+        </dependency>
+
     </dependencies>
 
     <build>

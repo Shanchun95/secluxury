@@ -49,4 +49,10 @@ public class GoodsServiceImpl implements GoodsService {
         List<GoodsNew> goodsNewList = goodsMapper.selectAllGoodsNew();
         return goodsNewList;
     }
+
+    @Override
+    public Goods getGoodsById(int goodsId) {
+        Goods goods = goodsMapper.getGoodsById(goodsId);
+        return goods;
+    }
 }

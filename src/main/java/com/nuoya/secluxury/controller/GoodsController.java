@@ -3,13 +3,13 @@ package com.nuoya.secluxury.controller;
 
 import com.nuoya.secluxury.pojo.*;
 import com.nuoya.secluxury.service.GoodsService;
+import com.nuoya.secluxury.utils.JedisClient;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,12 +17,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/goods")
+@RequestMapping(value = "goods",method = RequestMethod.POST)
 public class GoodsController {
 
     @Autowired
     GoodsService goodsService;
+
+    @Autowired
+    private JedisClient jedisClient;
 
     @RequestMapping("/serchgoods")
     @ApiOperation("该方法用于查询所有的商品，包括模糊查询，条件查询")
@@ -40,11 +44,20 @@ public class GoodsController {
         map.put("priceAsc",priceAsc);
         map.put("priceDesc",priceDesc);
         System.out.println(map);
+
         List<Goods> goodsList = goodsService.selectAllGoodsBy(map);
         System.out.println(goodsList);
 
         return goodsList;
 
+    }
+
+    @RequestMapping("/getgoodsbyid")
+    @ApiOperation("当用户点击展示出来的所有商品中的其中一个时，给我传一个商品id，我给你展示这个商品的所有属性")
+    public Goods getGoodsById(@ApiParam("传参为商品的goodsId") int goodsId) {
+        Goods goods = goodsService.getGoodsById(goodsId);
+        System.out.println("通过id查到的商品信息："+goods);
+        return goods;
     }
     @RequestMapping("/test")
     @ApiOperation("后端用来测试的方法，前端不必使用")

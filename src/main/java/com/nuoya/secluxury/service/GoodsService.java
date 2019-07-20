@@ -17,4 +17,6 @@ public interface GoodsService {
     List<GoodsPeopleType> selectAllPeopleType();
 
     List<GoodsNew> selectAllGoodsNew();
+
+    Goods getGoodsById(int goodsId);
 }

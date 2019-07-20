@@ -22,4 +22,6 @@ public interface GoodsMapper {
     List<GoodsPeopleType> selectAllPeopleType();
 
     List<GoodsNew> selectAllGoodsNew();
+
+    Goods getGoodsById(int goodsId);
 }

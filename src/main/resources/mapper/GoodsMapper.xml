@@ -112,4 +112,24 @@
     <select id="selectAllGoodsNew" resultMap="goodsNewMap">
         select * from goods_new
     </select>
+
+    <select id="getGoodsById" parameterType="int" resultMap="goodsMap">
+        select g.goods_id,g.goods_name,g.goods_size,g.image_url,g.brand_id,g.goods_detail,g.type_id,g.goods_new_id,
+        g.people_type_id,g.post_price,g.delivery_time_id,g.publish_user,g.receive_user,g.order_status,g.identify_status,
+        g.goods_price,g.platform_price,g.market_price,g.create_time,g.price_status_id,
+        br.brand,
+        ty.type,
+        de.delivery_time,
+        pr.price_status,
+        pe.people_type,
+        new.goods_new
+        from goods g
+        left join goods_brand br on br.id = g.goods_id
+        left join goods_type ty on ty.type_id = g.type_id
+        left join delivery de on de.delivery_id = g.delivery_time_id
+        left join goods_price_status pr on pr.id = g.price_status_id
+        left join goods_people_type pe on pe.id = g.people_type_id
+        left join goods_new new on new.id = g.goods_new_id
+        where goods_id = #{goodsId}
+    </select>
 </mapper>
