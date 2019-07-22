@@ -97,6 +97,7 @@
             <version>1.4</version>
         </dependency>
 
+        <!--跨域问题相关包-->
         <dependency>
             <groupId>com.thetransactioncompany</groupId>
             <artifactId>cors-filter</artifactId>

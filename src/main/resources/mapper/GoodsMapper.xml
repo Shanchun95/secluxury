@@ -130,6 +130,6 @@
         left join goods_price_status pr on pr.id = g.price_status_id
         left join goods_people_type pe on pe.id = g.people_type_id
         left join goods_new new on new.id = g.goods_new_id
-        where goods_id = #{goodsId}
+        where goods_id = #{id}
     </select>
 </mapper>

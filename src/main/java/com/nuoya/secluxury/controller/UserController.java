@@ -26,7 +26,7 @@ public class UserController {
 
     @RequestMapping("login")
     @ApiOperation("用户登录功能，需要传递用户名称（email）初始值为admin、密码（password）初始值为admin.如果用户名密码正确将用户名保存到cookie中，返回数字“ 1 ”、否则返回数字“ 0 ”")
-    public int login(@ApiParam() String email, String password,HttpServletResponse response){
+    public int login(String email, String password,HttpServletResponse response){
         response.setHeader("Access-Control-Allow-Origin", "*");
         System.out.println(email);
         User user = new User();

@@ -23,5 +23,5 @@ public interface GoodsMapper {
 
     List<GoodsNew> selectAllGoodsNew();
 
-    Goods getGoodsById(int goodsId);
+    Goods getGoodsById(int id);
 }
