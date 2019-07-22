@@ -10,4 +10,10 @@ public interface UserService {
     int selectByName(User user);
 
     int addUser(User user);
+
+    int addUserInformation(User user);
+
+    int addUserPhoto(User user);
+
+    int editPassword(User user);
 }

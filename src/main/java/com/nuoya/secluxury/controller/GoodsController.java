@@ -7,8 +7,6 @@ import com.nuoya.secluxury.utils.JedisClient;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,8 +26,9 @@ public class GoodsController {
     @Autowired
     private JedisClient jedisClient;
 
-    @RequestMapping("/serchgoods")
+
     @ApiOperation("该方法用于查询所有的商品，包括模糊查询，条件查询")
+    @RequestMapping(value = "serchgoods",method = RequestMethod.GET)
     public List<Goods> selectAllGoodsBy(HttpServletResponse response, HttpServletRequest request, @ApiParam(value = "关键词搜索，传入String类型",defaultValue = "dfsdfs") String keyWords, @ApiParam("按照种类搜索,传Integer类型的值")Integer typeId, @ApiParam("按品牌搜索，传品牌id，Integer类型") Integer brandId, @ApiParam("按价格分段查询，传入状态值(Integer类型1、2、3、4、5)：价格范围：1:x<1000、2:1000<x<5000、3:5000<x<1W、4:1W<x<10W、5:10W<x") Integer priceStatus, @ApiParam("适用人群（Integer类型0、1、2）0：通用、1：男士、2：女士") Integer peopleType, @ApiParam("成色：95新则传int的95，9新传90，全新传值100") Integer goodsNew, @ApiParam("发布时间排序，传一个字符串createTime即可(前台应控制三个排序同时只能选一个！否则我后台的算法报错)") String createTime, @ApiParam("价格升序，传一个字符串priceAsc即可(前台应控制三个排序同时只能选一个！否则我后台的算法报错)") String priceAsc, @ApiParam("价格降序，传一个字符串priceDesc即可(前台应控制三个排序同时只能选一个！否则我后台的算法报错)") String priceDesc) {
         response.setHeader("Access-Control-Allow-Origin", "*");
 

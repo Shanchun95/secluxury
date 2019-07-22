@@ -18,4 +18,10 @@ public class GoodsTypeServiceImpl implements GoodsTypeService {
         List<GoodsType> goodsTypeList = goodsTypeMapper.typeList();
         return goodsTypeList;
     }
+
+    @Override
+    public List<GoodsType> getTypeList() {
+        List<GoodsType> typeList = goodsTypeMapper.getTypeList();
+        return typeList;
+    }
 }

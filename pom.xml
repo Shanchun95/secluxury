@@ -102,7 +102,6 @@
             <artifactId>cors-filter</artifactId>
             <version>[ version ]</version>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -123,5 +122,4 @@
             </resource>
         </resources>
     </build>
-
 </project>

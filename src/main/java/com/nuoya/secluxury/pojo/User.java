@@ -8,13 +8,34 @@ public class User {
     private String userName;
     @ApiModelProperty("用户密码")
     private String password;
+    @ApiModelProperty("用户邮箱")
+    private String email;
     @ApiModelProperty("用户头像")
     private String imageUrl;
     @ApiModelProperty("用户性别")
     private int sex;
     @ApiModelProperty("用户地址")
     private int address;
+    @ApiModelProperty("用户二维码")
+    private String codeUrl;
     public User() {
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCodeUrl() {
+        return codeUrl;
+    }
+
+
+    public void setCodeUrl(String codeUrl) {
+        this.codeUrl = codeUrl;
     }
 
     public int getAddress() {
@@ -57,13 +78,17 @@ public class User {
         this.sex = sex;
     }
 
+
     @Override
     public String toString() {
         return "User{" +
                 "userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", sex=" + sex +
+                ", address=" + address +
+                ", codeUrl='" + codeUrl + '\'' +
                 '}';
     }
 }
