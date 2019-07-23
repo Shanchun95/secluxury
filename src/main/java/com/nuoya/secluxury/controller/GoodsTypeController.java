@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 @CrossOrigin
 @RestController
-@RequestMapping(value = "type",method = RequestMethod.GET)
+@RequestMapping(value = "type",method = {RequestMethod.POST,RequestMethod.GET})
 public class GoodsTypeController {
 
     @Autowired

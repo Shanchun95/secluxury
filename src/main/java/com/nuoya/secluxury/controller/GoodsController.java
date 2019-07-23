@@ -17,7 +17,7 @@ import java.util.Map;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "goods",method = RequestMethod.POST)
+@RequestMapping(value = "goods",method = {RequestMethod.POST,RequestMethod.GET})
 public class GoodsController {
 
     @Autowired
@@ -53,7 +53,8 @@ public class GoodsController {
 
     @RequestMapping("/getgoodsbyid")
     @ApiOperation("当用户点击展示出来的所有商品中的其中一个时，给我传一个商品id，我给你展示这个商品的所有属性")
-    public Goods getGoodsById(@ApiParam("传参为商品的goodsId") int goodsId) {
+    public Goods getGoodsById(int goodsId,HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         Goods goods = goodsService.getGoodsById(goodsId);
         System.out.println("通过id查到的商品信息："+goods);
         return goods;
