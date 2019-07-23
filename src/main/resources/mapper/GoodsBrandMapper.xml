@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nuoya.secluxury.mapper.GoodsBrandMapper">
+    <resultMap id="brandMap" type="com.nuoya.secluxury.pojo.GoodsBrand">
+        <id property="id" column="id"/>
+        <result property="brand" column="brand"/>
+        <result property="typeId" column="type_id"/>
+            <collection property="goodsList" ofType="Goods">
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsName" column="goods_name"/>
+                <result property="goodsSize" column="goods_size"/>
+                <result property="imageUrl" column="image_url"/>
+                <result property="brandId" column="brand_id"/>
+                <result property="brand" column="brand"/>
+                <result property="goodsDetail" column="goods_detail"/>
+                <result property="type_id" column="typeId"/>
+                <result property="type" column="type"/>
+                <result property="goodsNew" column="goods_new"/>
+                <result property="peopleType" column="people_type"/>
+                <result property="postPrice" column="post_price"/>
+                <result property="deliveryTimeId" column="delivery_time_id"/>
+                <result property="deliveryTime" column="delivery_time"/>
+                <result property="publishUser" column="publish_user"/>
+                <result property="receiveUser" column="receive_user"/>
+                <result property="priceStatus" column="price_status"/>
+                <result property="orderStatus" column="order_status"/>
+                <result property="identifyStatus" column="identify_status"/>
+                <result property="goodsPrice" column="goods_price"/>
+                <result property="platformPrice" column="platform_price"/>
+                <result property="marketPrice" column="market_price"/>
+                <result property="createTime" column="create_time"/>
+            </collection>
+    </resultMap>
+    <select id="brandGoodsList" resultMap="brandMap">
+        select * from goods g,goods_brand b where b.id = g.brand_id
+    </select>
+
+</mapper>

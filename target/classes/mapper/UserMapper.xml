@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nuoya.secluxury.mapper.UserMapper">
+    <resultMap id="userNameMap" type="com.nuoya.secluxury.pojo.User">
+        <result property="userName" column="username"/>
+        <result property="imageUrl" column="image_url"/>
+    </resultMap>
+    <insert id="addUser" parameterType="user">
+        insert into user (username,email,image_url,sex,address_id) values (#{userName},#{userName},null,1,1)
+    </insert>
+
+    <select id="login" parameterType="com.nuoya.secluxury.pojo.User" resultType="int">
+        select count(1) from user u,user_login p where u.username = p.username and u.username=#{userName} and p.password=#{password}
+
+     </select>
+    <select id="getUserList" resultType="com.nuoya.secluxury.pojo.User">
+        select * from user
+    </select>
+    <select id="selectByName" parameterType="User" resultType="int">
+        select COUNT(1) from user where username = #{userName}
+    </select>
+</mapper>

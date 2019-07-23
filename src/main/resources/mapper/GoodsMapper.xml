@@ -4,24 +4,138 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nuoya.secluxury.mapper.GoodsMapper">
 
-    <select id="selectAllGoodsBy" parameterType="map" resultType="Goods">
-        select g.goods_id,g.goods_name,g.goods_size,g.image_id,g.brand_id,g.goods_detail,g.type_id,g.goods_new,
-        g.people_type,g.post_price,g.delivery_time_id,g.publish_user,g.receive_user,g.oredr_status,g.identify_status,
-        g.goods_price,g.platform_price,g.market_price,g.creatr_time,
+    <resultMap id="goodsMap" type="goods">
+        <id property="goodsId" column="goods_id"/>
+        <result property="goodsName" column="goods_name"/>
+        <result property="goodsSize" column="goods_size"/>
+        <result property="imageUrl" column="image_url"/>
+        <result property="brandId" column="brand_id"/>
+        <result property="brand" column="brand"/>
+        <result property="goodsDetail" column="goods_detail"/>
+        <result property="type_id" column="typeId"/>
+        <result property="type" column="type"/>
+        <result property="goodsNewId" column="goods_new_id"/>
+        <result property="goodsNew" column="goods_new"/>
+        <result property="peopleTypeId" column="people_type_id"/>
+        <result property="peopleType" column="people_type"/>
+        <result property="postPrice" column="post_price"/>
+        <result property="deliveryTimeId" column="delivery_time_id"/>
+        <result property="deliveryTime" column="delivery_time"/>
+        <result property="publishUser" column="publish_user"/>
+        <result property="receiveUser" column="receive_user"/>
+        <result property="priceStatusId" column="price_status_id"/>
+        <result property="priceStatus" column="price_status"/>
+        <result property="orderStatus" column="order_status"/>
+        <result property="identifyStatus" column="identify_status"/>
+        <result property="goodsPrice" column="goods_price"/>
+        <result property="platformPrice" column="platform_price"/>
+        <result property="marketPrice" column="market_price"/>
+        <result property="createTime" column="create_time"/>
+
+    </resultMap>
+
+    <select id="selectAllGoodsBy" parameterType="map" resultMap="goodsMap">
+        select g.goods_id,g.goods_name,g.goods_size,g.image_url,g.brand_id,g.goods_detail,g.type_id,g.goods_new_id,
+        g.people_type_id,g.post_price,g.delivery_time_id,g.publish_user,g.receive_user,g.order_status,g.identify_status,
+        g.goods_price,g.platform_price,g.market_price,g.create_time,g.price_status_id,
         br.brand,
-        img.image_url,
         ty.type,
-        de.delivery_time
+        de.delivery_time,
+        pr.price_status,
+        pe.people_type,
+        new.goods_new
         from goods g
         left join goods_brand br on br.id = g.goods_id
-        left join goods_image img on img.goods_id = g.goods_id
         left join goods_type ty on ty.type_id = g.type_id
         left join delivery de on de.delivery_id = g.delivery_time_id
-        <where>
-            <if test="map">
+        left join goods_price_status pr on pr.id = g.price_status_id
+        left join goods_people_type pe on pe.id = g.people_type_id
+        left join goods_new new on new.id = g.goods_new_id
 
+        <where>
+            <if test="keyWords != null">
+                goods_name like CONCAT("%", #{keyWords}, "%")
+            </if>
+            <if test="typeId != null">
+                and type_id = #{typeId}
+            </if>
+            <if test="brandId != null">
+                and brand_id = #{brandId}
+            </if>
+            <if test="priceStatus != null">
+                and price_status = #{priceStatus}
+            </if>
+            <if test="peopleType != null">
+                and people_type = #{peopleType}
+            </if>
+            <if test="createTime != null">
+                order by create_time
+            </if>
+            <if test="priceAsc != null">
+                order by goods_price asc
+            </if>
+            <if test="priceDesc != null">
+                order by goods_price desc
             </if>
         </where>
 
+    </select>
+
+    <resultMap id="brandMap" type="Brand">
+        <id column="id" property="id"/>
+        <result column="brand" property="brand"/>
+        <result column="type_id" property="typeId"/>
+    </resultMap>
+
+    <select id="selectAllBrand" resultMap="brandMap">
+        select * from goods_brand
+    </select>
+
+
+    <resultMap id="goodsPriceStatusMap" type="goodsPriceStatus">
+        <id column="id" property="id"/>
+        <result column="price_status" property="priceStatus"/>
+    </resultMap>
+
+    <select id="selectAllPriceStatus" resultMap="goodsPriceStatusMap">
+        select * from goods_price_status
+    </select>
+
+    <resultMap id="goodsPeopleTypeMap" type="goodsPeopleType">
+        <id property="id" column="id"/>
+        <result property="peopleType" column="people_type"/>
+    </resultMap>
+
+    <select id="selectAllPeopleType" resultMap="goodsPeopleTypeMap">
+        select * from goods_people_type
+    </select>
+
+    <resultMap id="goodsNewMap" type="goodsNew">
+        <id property="id" column="id"/>
+        <result property="goodsNew" column="goods_new"/>
+    </resultMap>
+
+    <select id="selectAllGoodsNew" resultMap="goodsNewMap">
+        select * from goods_new
+    </select>
+
+    <select id="getGoodsById" parameterType="int" resultMap="goodsMap">
+        select g.goods_id,g.goods_name,g.goods_size,g.image_url,g.brand_id,g.goods_detail,g.type_id,g.goods_new_id,
+        g.people_type_id,g.post_price,g.delivery_time_id,g.publish_user,g.receive_user,g.order_status,g.identify_status,
+        g.goods_price,g.platform_price,g.market_price,g.create_time,g.price_status_id,
+        br.brand,
+        ty.type,
+        de.delivery_time,
+        pr.price_status,
+        pe.people_type,
+        new.goods_new
+        from goods g
+        left join goods_brand br on br.id = g.goods_id
+        left join goods_type ty on ty.type_id = g.type_id
+        left join delivery de on de.delivery_id = g.delivery_time_id
+        left join goods_price_status pr on pr.id = g.price_status_id
+        left join goods_people_type pe on pe.id = g.people_type_id
+        left join goods_new new on new.id = g.goods_new_id
+        where goods_id = #{id}
     </select>
 </mapper>
