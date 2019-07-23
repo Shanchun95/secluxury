@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nuoya.secluxury.mapper.KeepServiceMapper" >
+  <resultMap id="BaseResultMap" type="com.nuoya.secluxury.pojo.KeepService" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" />
+    <result column="user_phone" property="userPhone" />
+    <result column="service_name" property="serviceName" />
+    <result column="service_detail" property="serviceDetail" />
+    <result column="image_url" property="imageUrl" />
+    <result column="service_price" property="servicePrice" />
+    <result column="service_type" property="serviceType" />
+  </resultMap>
+
+  <select id="getAllService" resultMap="BaseResultMap" parameterType="Integer">
+    select * from keep_service where service_type = #{serviceType}
+  </select>
+
+</mapper>
