@@ -81,7 +81,13 @@
 
     </select>
 
-    <select id="selectAllBrand" resultType="Brand">
+    <resultMap id="brandMap" type="Brand">
+        <id column="id" property="id"/>
+        <result column="brand" property="brand"/>
+        <result column="type_id" property="typeId"/>
+    </resultMap>
+
+    <select id="selectAllBrand" resultMap="brandMap">
         select * from goods_brand
     </select>
 

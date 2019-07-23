@@ -15,7 +15,18 @@ public class GoodsType {
 
     @ApiModelProperty("商品种类对应的商品的信息")
     private List<Goods> goodsList;
+
+    @ApiModelProperty("商品种类对应的商品品牌信息")
+    private  List<GoodsBrand> goodsBrandList;
     public GoodsType() {
+    }
+
+    public List<GoodsBrand> getGoodsBrandList() {
+        return goodsBrandList;
+    }
+
+    public void setGoodsBrandList(List<GoodsBrand> goodsBrandList) {
+        this.goodsBrandList = goodsBrandList;
     }
 
     public int getTypeId() {
@@ -48,6 +59,7 @@ public class GoodsType {
                 "typeId=" + typeId +
                 ", type='" + type + '\'' +
                 ", goodsList=" + goodsList +
+                ", goodsBrandList=" + goodsBrandList +
                 '}';
     }
 }

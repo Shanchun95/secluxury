@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.nuoya.secluxury.mapper.GoodsTypeMapper">
-    <resultMap id="typeMap" type="com.nuoya.secluxury.pojo.GoodsType">
-        <id property="typeId" column="type_id"/>
-        <result property="type" column="type"/>
-        <collection property="goodsBrandList" ofType="GoodsBrand">
-
-            <result property="brand" column="brand"/>
-            <result property="typeId" column="type_id"/>
-            <!--<collection property="goodsList" ofType="Goods">
+<mapper namespace="com.nuoya.secluxury.mapper.GoodsBrandMapper">
+    <resultMap id="brandMap" type="com.nuoya.secluxury.pojo.GoodsBrand">
+        <id property="id" column="id"/>
+        <result property="brand" column="brand"/>
+        <result property="typeId" column="type_id"/>
+            <collection property="goodsList" ofType="Goods">
                 <result property="goodsId" column="goods_id" />
                 <result property="goodsName" column="goods_name"/>
                 <result property="goodsSize" column="goods_size"/>
@@ -33,15 +30,10 @@
                 <result property="platformPrice" column="platform_price"/>
                 <result property="marketPrice" column="market_price"/>
                 <result property="createTime" column="create_time"/>
-            </collection>-->
-
-        </collection>
+            </collection>
     </resultMap>
-    <select id="typeList" resultMap="typeMap">
-        select * from goods_type t, goods g,goods_brand b where t.type_id = b.type_id and b.id = g.brand_id
-    </select>
-    <select id="getTypeList" resultMap="typeMap">
-         select * from goods_type t,goods_brand b where t.type_id = b.type_id
+    <select id="brandGoodsList" resultMap="brandMap">
+        select * from goods g,goods_brand b where b.id = g.brand_id
     </select>
 
 </mapper>

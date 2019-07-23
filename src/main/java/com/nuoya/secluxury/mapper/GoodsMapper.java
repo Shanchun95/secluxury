@@ -13,7 +13,7 @@ import java.util.Map;
 public interface GoodsMapper {
     List<Goods> selectAllGoodsBy(Map<String, Object> map);
 
-    List<Goods> selectAllGoods();
+//    List<Goods> selectAllGoods();
 
     List<Brand> selectAllBrand();
 

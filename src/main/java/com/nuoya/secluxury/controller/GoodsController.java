@@ -17,40 +17,41 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+//,method = RequestMethod.POST
 @CrossOrigin
-    @RestController
-    @RequestMapping(value = "goods",method = RequestMethod.POST)
-    public class GoodsController {
+@RestController
+@RequestMapping(value = "goods")
+public class GoodsController {
 
-        @Autowired
-        GoodsService goodsService;
+    @Autowired
+    GoodsService goodsService;
 
-        @Autowired
-        private JedisClient jedisClient;
+    @Autowired
+    private JedisClient jedisClient;
 
-        @RequestMapping(value = "searchgoods")
-        @ApiOperation("该方法用于查询所有的商品，包括模糊查询，条件查询")
-        public List<Goods> selectAllGoodsBy(HttpServletResponse response, HttpServletRequest request, String keyWords, Integer typeId, Integer brandId, Integer priceStatus, Integer peopleType, Integer goodsNew, String createTime, String priceAsc, String priceDesc) {
-            response.setHeader("Access-Control-Allow-Origin", "*");
+    @RequestMapping(value = "searchgoods")
+    @ApiOperation("该方法用于查询所有的商品，包括模糊查询，条件查询")
+    public List<Goods> selectAllGoodsBy(HttpServletResponse response, HttpServletRequest request, String keyWords, Integer typeId, Integer brandId, Integer priceStatus, Integer peopleType, Integer goodsNew, String createTime, String priceAsc, String priceDesc) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
 
-            Map<String,Object> map = new HashMap<String,Object>();
-            map.put("keyWords",keyWords);
-            map.put("typeId",typeId);
-            map.put("brandId",brandId);
-            map.put("priceStatus",priceStatus);
-            map.put("peopleType",peopleType);
-            map.put("goodsNew",goodsNew);
-            map.put("createTime",createTime);
-            map.put("priceAsc",priceAsc);
-            map.put("priceDesc",priceDesc);
-            System.out.println(map);
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("keyWords",keyWords);
+        map.put("typeId",typeId);
+        map.put("brandId",brandId);
+        map.put("priceStatus",priceStatus);
+        map.put("peopleType",peopleType);
+        map.put("goodsNew",goodsNew);
+        map.put("createTime",createTime);
+        map.put("priceAsc",priceAsc);
+        map.put("priceDesc",priceDesc);
+        System.out.println(map);
 
-            List<Goods> goodsList = goodsService.selectAllGoodsBy(map);
-            System.out.println(goodsList);
+        List<Goods> goodsList = goodsService.selectAllGoodsBy(map);
+        System.out.println(goodsList);
 
-            return goodsList;
+        return goodsList;
 
-        }
+    }
 
     @RequestMapping(value = "getgoodsbyid")
     @ApiOperation("当用户点击展示出来的所有商品中的其中一个时，给我传一个商品id，我给你展示这个商品的所有属性")
@@ -58,13 +59,6 @@ import java.util.Map;
         Goods goods = goodsService.getGoodsById(id);
         System.out.println("通过id查到的商品信息："+goods);
         return goods;
-    }
-    @RequestMapping("/test")
-    @ApiOperation("后端用来测试的方法，前端不必使用")
-    public List<Goods> selectAllGoods() {
-        List<Goods> goodsList = goodsService.selectAllGoods();
-        System.out.println(goodsList);
-        return goodsList;
     }
 
     @RequestMapping("/brandlist")

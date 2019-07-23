@@ -21,12 +21,6 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public List<Goods> selectAllGoods() {
-        List<Goods> goodsList = goodsMapper.selectAllGoods();
-        return goodsList;
-    }
-
-    @Override
     public List<Brand> selectAllBrand() {
         List<Brand> brandList = goodsMapper.selectAllBrand();
         return brandList;
