@@ -3,7 +3,7 @@ package com.nuoya.secluxury.pojo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel("商品品牌的实体类")
+@ApiModel("Brand商品品牌的实体类")
 public class Brand {
     @ApiModelProperty("品牌的id")
     private int id;

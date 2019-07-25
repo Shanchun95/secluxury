@@ -1,7 +1,12 @@
 package com.nuoya.secluxury.pojo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel("GoodsPeopleType适用人群实体类")
 public class GoodsPeopleType {
     private int id;
+    @ApiModelProperty("使用人群类型")
     private String peopleType;
 
     public int getId() {

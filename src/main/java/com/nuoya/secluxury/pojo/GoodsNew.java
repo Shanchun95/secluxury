@@ -1,7 +1,12 @@
 package com.nuoya.secluxury.pojo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel("GoodsNew商品成色信息类（即新旧程度）")
 public class GoodsNew {
     private int id;
+    @ApiModelProperty("商品的成色")
     private String goodsNew;
 
     public int getId() {

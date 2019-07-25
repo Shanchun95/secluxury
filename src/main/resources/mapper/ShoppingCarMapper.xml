@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nuoya.secluxury.mapper.ShoppingCarMapper">
+    <resultMap id="getShoppingCarMap" type="ShoppingCar">
+        <id column="id" property="id"/>
+        <result column="shopping_goods_id" property="shoppingGoodsId"/>
+        <result column="email" property="email"/>
+        <result column="num" property="num"/>
+        <result column="total_price" property="totalPrice"/>
+
+        <collection property="goods" ofType="Goods">
+            <id property="goodsId" column="goods_ids"/>
+            <result property="goodsName" column="goods_name"/>
+            <result property="goodsSize" column="goods_size"/>
+            <result property="imageUrl" column="image_url"/>
+            <result property="brandId" column="brand_id"/>
+            <result property="brand" column="brand"/>
+            <result property="goodsDetail" column="goods_detail"/>
+            <result property="typeId" column="type_id"/>
+            <result property="type" column="type"/>
+            <result property="goodsNewId" column="goods_new_id"/>
+            <result property="goodsNew" column="goods_new"/>
+            <result property="peopleTypeId" column="people_type_id"/>
+            <result property="peopleType" column="people_type"/>
+            <result property="postPrice" column="post_price"/>
+            <result property="deliveryTimeId" column="delivery_time_id"/>
+            <result property="deliveryTime" column="delivery_time"/>
+            <result property="publishUser" column="publish_user"/>
+            <result property="receiveUser" column="receive_user"/>
+            <result property="priceStatusId" column="price_status_id"/>
+            <result property="priceStatus" column="price_status"/>
+            <result property="orderStatus" column="order_status"/>
+            <result property="identifyStatus" column="identify_status"/>
+            <result property="goodsPrice" column="goods_price"/>
+            <result property="platformPrice" column="platform_price"/>
+            <result property="marketPrice" column="market_price"/>
+            <result property="createTime" column="create_time"/>
+        </collection>
+    </resultMap>
+    <select id="getShoppingCar" parameterType="String" resultMap="getShoppingCarMap">
+        select g.goods_id as goods_ids,g.goods_name,g.goods_size,g.image_url,g.brand_id,g.goods_detail,g.type_id,g.goods_new_id,
+        g.people_type_id,g.post_price,g.delivery_time_id,g.publish_user,g.receive_user,g.order_status,g.identify_status,
+        g.goods_price,g.platform_price,g.market_price,g.create_time,g.price_status_id,
+        br.brand,
+        ty.type,
+        de.delivery_time,
+        pr.price_status,
+        pe.people_type,
+        new.goods_new,
+        sho.shopping_goods_id,sho.email,sho.num,sho.total_price
+        from goods g
+        left join goods_brand br on br.id = g.goods_id
+        left join goods_type ty on ty.type_id = g.type_id
+        left join delivery de on de.delivery_id = g.delivery_time_id
+        left join goods_price_status pr on pr.id = g.price_status_id
+        left join goods_people_type pe on pe.id = g.people_type_id
+        left join goods_new new on new.id = g.goods_new_id
+        left join shopping_car sho on g.goods_id = sho.shopping_goods_id
+        where email = #{email}
+    </select>
+
+    <select id="selectShoppingCountById" parameterType="shoppingCar" resultType="int">
+        select count(1) from shopping_car where shopping_goods_id = #{shoppingGoodsId} and email = #{email}
+    </select>
+
+    <insert id="addShopping">
+        insert into shopping_car (shopping_goods_id,email,num) values (#{shoppingGoodsId},#{email},1);
+    </insert>
+
+    <select id="selectNum" parameterType="shoppingCar" resultType="int">
+        select num from shopping_car where shopping_goods_id = #{shoppingGoodsId} and email = #{email}
+    </select>
+
+    <update id="updateShoppingNum" parameterType="shoppingCar">
+        update shopping_car
+        set num = #{num}
+        where shopping_goods_id = #{shoppingGoodsId} and email = #{email}
+    </update>
+
+    <select id="selectCount" parameterType="String" resultType="int">
+        select count(1) from shopping_car where email = #{email}
+    </select>
+
+    <update id="clickAdd" parameterType="shoppingCar">
+        UPDATE shopping_car
+        SET num = num + 1
+        WHERE shopping_goods_id = #{shoppingGoodsId} and email = #{email}
+    </update>
+
+    <select id="selectShoppingGoods" parameterType="shoppingCar" resultMap="getShoppingCarMap">
+        select id, email, shopping_goods_id, num
+        from shopping_car
+        where email = #{email} and shopping_goods_id = #{shoppingGoodsId}
+    </select>
+
+    <update id="clickSubtract" parameterType="shoppingCar">
+        UPDATE shopping_car
+        SET num = num - 1
+        WHERE shopping_goods_id = #{shoppingGoodsId} and email = #{email}
+    </update>
+
+    <delete id="deleteOne" parameterType="shoppingCar">
+        delete from shopping_car
+        where shopping_goods_id = #{shoppingGoodsId} and email = #{email}
+    </delete>
+
+    <!--    <insert id="addShopping" parameterType="ShoppingCar" resultMap-->
+</mapper>

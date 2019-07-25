@@ -1,7 +1,12 @@
 package com.nuoya.secluxury.pojo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel("GoodsPriceStatus商品价格范围")
 public class GoodsPriceStatus {
     private int id;
+    @ApiModelProperty("商品的价格范围值")
     private String priceStatus;
 
     public int getId() {

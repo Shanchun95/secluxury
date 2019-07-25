@@ -103,7 +103,6 @@
             <artifactId>cors-filter</artifactId>
             <version>[ version ]</version>
         </dependency>
-
     </dependencies>
 
     <build>

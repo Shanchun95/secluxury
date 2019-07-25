@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiParam;
 
 import java.util.List;
 
-@ApiModel("商品类别实体类")
+@ApiModel("GoodsType商品类别实体类")
 public class GoodsType {
     @ApiModelProperty("商品种类编号（主键）")
     private int typeId;

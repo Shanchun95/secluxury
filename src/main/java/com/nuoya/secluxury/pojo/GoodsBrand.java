@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
-@ApiModel("商品品牌的实体类")
+@ApiModel("GoodsBrand商品品牌的实体类")
 public class GoodsBrand {
     @ApiModelProperty("商品品牌的编号")
     private int id;

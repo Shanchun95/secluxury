@@ -13,7 +13,7 @@ public class Goods {
     private int goodsId;
     @ApiModelProperty("商品名")
     private String goodsName;
-    @ApiModelProperty(value = "商品尺寸",example = "10*8*5/或者1米长等等")
+    @ApiModelProperty(value = "商品尺寸")
     private String goodsSize;
     @ApiModelProperty("商品图片链接")
     private String imageUrl;
@@ -30,20 +30,20 @@ public class Goods {
     @ApiModelProperty("商品种类")
     private String type;
 
-    @ApiModelProperty(value = "商品成色，9成新为90，全新为100，95新为95",example = "1")
+    @ApiModelProperty(value = "商品成色，9成新为90，全新为100，95新为95")
     private int goodsNewId;
     @ApiModelProperty(value = "商品成色")
     private String goodsNew;
 
-    @ApiModelProperty(value = "适用人群，1：全部/2：男士/3：女士",example = "1")
+    @ApiModelProperty(value = "适用人群，1：全部/2：男士/3：女士")
     private int peopleTypeId;
-    @ApiModelProperty(value = "适用人群，1：全部/2：男士/3：女士",example = "1")
+    @ApiModelProperty(value = "适用人群，1：全部/2：男士/3：女士")
     private String peopleType;
 
-    @ApiModelProperty(value = "商品邮费",example = "12")
+    @ApiModelProperty(value = "商品邮费")
     private int postPrice;
 
-    @ApiModelProperty(value = "发货时间的id，这一项时一个下拉框，值固定，通过id能得到对应的名字deliveryTime",example = "2")
+    @ApiModelProperty(value = "发货时间的id，这一项时一个下拉框，值固定，通过id能得到对应的名字deliveryTime")
     private int deliveryTimeId;
     @ApiModelProperty("发货时间选择")
     private String deliveryTime;
@@ -53,14 +53,14 @@ public class Goods {
     @ApiModelProperty("收货人姓名，同时通过这个姓名能得到收货人的所有信息，包括地址，电话等")
     private String receiveUser;
 
-    @ApiModelProperty(value = "价格分布状态，为状态值，对应下拉框值！价格范围：1:x<1000/2:1000<x<5000/3:5000<x<1W/4:1W<x<10W/5:10W<x",example = "2")
+    @ApiModelProperty(value = "价格分布状态，为状态值，对应下拉框值！价格范围：1:x<1000/2:1000<x<5000/3:5000<x<1W/4:1W<x<10W/5:10W<x")
     private int priceStatusId;
-    @ApiModelProperty(value = "价格分布状态，为状态值，对应下拉框值！价格范围：1:x<1000/2:1000<x<5000/3:5000<x<1W/4:1W<x<10W/5:10W<x",example = "2")
+    @ApiModelProperty(value = "价格分布状态，为状态值，对应下拉框值！价格范围：1:x<1000/2:1000<x<5000/3:5000<x<1W/4:1W<x<10W/5:10W<x")
     private String priceStatus;
 
-    @ApiModelProperty(value = "订单状态：0发布状态，1下单状态，2已付款未发货，3已发货，4未接货，5已接货",example = "0")
+    @ApiModelProperty(value = "订单状态：0发布状态，1下单状态，2已付款未发货，3已发货，4未接货，5已接货")
     private int orderStatus;
-    @ApiModelProperty(value = "鉴定状态：0未鉴定，1鉴定中，2鉴定已通过，3鉴定未通过",example = "2")
+    @ApiModelProperty(value = "鉴定状态：0未鉴定，1鉴定中，2鉴定已通过，3鉴定未通过")
     private int identifyStatus;
     @ApiModelProperty("商品价格")
     private float goodsPrice;

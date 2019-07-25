@@ -12,7 +12,7 @@
         <result property="brandId" column="brand_id"/>
         <result property="brand" column="brand"/>
         <result property="goodsDetail" column="goods_detail"/>
-        <result property="type_id" column="typeId"/>
+        <result property="typeId" column="type_id"/>
         <result property="type" column="type"/>
         <result property="goodsNewId" column="goods_new_id"/>
         <result property="goodsNew" column="goods_new"/>
