@@ -7,8 +7,6 @@ import com.nuoya.secluxury.utils.JedisClient;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,10 +15,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//,method = RequestMethod.POST
 @CrossOrigin
 @RestController
-@RequestMapping(value = "goods")
+@RequestMapping(value = "goods",method = {RequestMethod.POST,RequestMethod.GET})
 public class GoodsController {
 
     @Autowired
@@ -29,9 +26,10 @@ public class GoodsController {
     @Autowired
     private JedisClient jedisClient;
 
-    @RequestMapping(value = "searchgoods")
+
     @ApiOperation("该方法用于查询所有的商品，包括模糊查询，条件查询")
-    public List<Goods> selectAllGoodsBy(HttpServletResponse response, HttpServletRequest request, String keyWords, Integer typeId, Integer brandId, Integer priceStatus, Integer peopleType, Integer goodsNew, String createTime, String priceAsc, String priceDesc) {
+    @RequestMapping(value = "serchgoods",method = RequestMethod.GET)
+    public List<Goods> selectAllGoodsBy(HttpServletResponse response, HttpServletRequest request,String keyWords,Integer typeId,Integer brandId,Integer priceStatus,Integer peopleType,Integer goodsNew, String createTime, String priceAsc,String priceDesc) {
         response.setHeader("Access-Control-Allow-Origin", "*");
 
         Map<String,Object> map = new HashMap<String,Object>();
@@ -53,12 +51,20 @@ public class GoodsController {
 
     }
 
-    @RequestMapping(value = "getgoodsbyid")
+    @RequestMapping("/getgoodsbyid")
     @ApiOperation("当用户点击展示出来的所有商品中的其中一个时，给我传一个商品id，我给你展示这个商品的所有属性")
-    public Goods getGoodsById(int id) {
-        Goods goods = goodsService.getGoodsById(id);
+    public Goods getGoodsById(int goodsId,HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        Goods goods = goodsService.getGoodsById(goodsId);
         System.out.println("通过id查到的商品信息："+goods);
         return goods;
+    }
+    @RequestMapping("/test")
+    @ApiOperation("后端用来测试的方法，前端不必使用")
+    public List<Goods> selectAllGoods() {
+        List<Goods> goodsList = goodsService.selectAllGoods();
+        System.out.println(goodsList);
+        return goodsList;
     }
 
     @RequestMapping("/brandlist")

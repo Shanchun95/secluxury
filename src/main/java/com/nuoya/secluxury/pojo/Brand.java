@@ -9,8 +9,6 @@ public class Brand {
     private int id;
     @ApiModelProperty("品牌名")
     private String brand;
-    @ApiModelProperty("对应的类型id")
-    private int typeId;
 
     public int getId() {
         return id;
@@ -28,20 +26,11 @@ public class Brand {
         this.brand = brand;
     }
 
-    public int getTypeId() {
-        return typeId;
-    }
-
-    public void setTypeId(int typeId) {
-        this.typeId = typeId;
-    }
-
     @Override
     public String toString() {
         return "Brand{" +
                 "id=" + id +
                 ", brand='" + brand + '\'' +
-                ", typeId=" + typeId +
                 '}';
     }
 }

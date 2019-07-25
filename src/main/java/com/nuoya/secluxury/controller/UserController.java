@@ -27,7 +27,7 @@ import java.util.Random;
 import java.util.UUID;
 @CrossOrigin
 @RestController
-@RequestMapping(value = "user",method = RequestMethod.POST)
+@RequestMapping(value = "user",method = {RequestMethod.POST,RequestMethod.GET})
 public class UserController {
 
     @Autowired
@@ -39,7 +39,7 @@ public class UserController {
     @RequestMapping(value = "login")
     public int login(String email,String password,HttpServletResponse response){
         response.setHeader("Access-Control-Allow-Origin", "*");
-        System.out.println(email);
+        System.out.println("登录用户账户："+email);
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
@@ -63,7 +63,7 @@ public class UserController {
     @RequestMapping("sendEmail")
     @ApiOperation("用户注册功能接口：调用该方法需要传递一个邮箱号，后台会向该邮箱发送一个验证码，发送成功返回数字 “ 1 ”、失败返回“ 0 ”")
     public int sendEmail(String email,HttpServletRequest request){
-            System.out.println(email);
+            System.out.println("发送验证码到："+email);
             String letterStr = "a,b,c,d,e,f,g,h,i,j,k,m,n,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,J,K,L,M,N,P,Q,R,S,T,U,V,W,X,Y,Z";
             String[] strs = letterStr.split(",");
             Random random = new Random();
@@ -78,6 +78,7 @@ public class UserController {
     @RequestMapping("validateYzm")
     @ApiOperation("用户注册功能，用户注册页面向后台传递一个“验证码”后台会对其进行校验，如果正确返回数字“ 1 ” 否则返回“ 0 ”")
     public int validateYzm(String u_yzm,HttpServletRequest request) {
+        System.out.println("获取验证码："+u_yzm);
         String h_yzm = (String)request.getSession().getAttribute("yzm");
         if (u_yzm.equals(h_yzm)){
             return 1;
@@ -93,8 +94,8 @@ public class UserController {
         int i = userService.editPassword(user);
         return i;
     }
-    @RequestMapping(value = "addUser",method = RequestMethod.POST)
-    @ApiOperation("用户注册功能，当用户注册填写好注册信息后点击注向后台传递用户邮箱（email）和登录密码（password），注册成功返回数字“ 1 ” 、失败返回数字“ 0 ”")
+    @RequestMapping(value = "addUser")
+    @ApiOperation("用户注册功能，当用户注册填写好注册信息后点击注向后台传递用户邮箱（email ）和登录密码（password），注册成功返回数字“ 1 ” 、失败返回数字“ 0 ”")
     public int addUser(String email,String password){
         System.out.println(email);
         User user = new User();
@@ -106,7 +107,7 @@ public class UserController {
 
     @RequestMapping("/addUserInformation")
     @ApiOperation("用户功能接口：用户修改个人信息")
-    public int addUserInformation(@ApiParam("用户昵称")String userName,@ApiParam("用户性别，数字“ 1 ”代表男 、“ 0 ”代表女") int sex,String email,@ApiParam("用户二维码") String codeUrl){
+    public int addUserInformation(String userName,int sex,String email,String codeUrl){
         User user = new User();
         user.setUserName(userName);
         user.setPassword(userName);

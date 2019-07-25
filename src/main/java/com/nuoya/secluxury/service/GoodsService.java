@@ -8,6 +8,8 @@ import java.util.Map;
 public interface GoodsService {
     List<Goods> selectAllGoodsBy(Map<String, Object> map);
 
+    List<Goods> selectAllGoods();
+
     List<Brand> selectAllBrand();
 
     List<GoodsPriceStatus> selectAllPriceStatus();
@@ -16,5 +18,5 @@ public interface GoodsService {
 
     List<GoodsNew> selectAllGoodsNew();
 
-    Goods getGoodsById(int id);
+    Goods getGoodsById(int goodsId);
 }

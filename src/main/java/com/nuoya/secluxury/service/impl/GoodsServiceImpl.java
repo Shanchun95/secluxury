@@ -21,6 +21,12 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public List<Goods> selectAllGoods() {
+        List<Goods> goodsList = goodsMapper.selectAllGoods();
+        return goodsList;
+    }
+
+    @Override
     public List<Brand> selectAllBrand() {
         List<Brand> brandList = goodsMapper.selectAllBrand();
         return brandList;
@@ -45,8 +51,8 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public Goods getGoodsById(int id) {
-        Goods goods = goodsMapper.getGoodsById(id);
+    public Goods getGoodsById(int goodsId) {
+        Goods goods = goodsMapper.getGoodsById(goodsId);
         return goods;
     }
 }

@@ -34,7 +34,6 @@
                 <result property="marketPrice" column="market_price"/>
                 <result property="createTime" column="create_time"/>
             </collection>-->
-
         </collection>
     </resultMap>
     <select id="typeList" resultMap="typeMap">

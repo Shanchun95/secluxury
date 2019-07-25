@@ -81,13 +81,7 @@
 
     </select>
 
-    <resultMap id="brandMap" type="Brand">
-        <id column="id" property="id"/>
-        <result column="brand" property="brand"/>
-        <result column="type_id" property="typeId"/>
-    </resultMap>
-
-    <select id="selectAllBrand" resultMap="brandMap">
+    <select id="selectAllBrand" resultType="Brand">
         select * from goods_brand
     </select>
 
@@ -136,6 +130,6 @@
         left join goods_price_status pr on pr.id = g.price_status_id
         left join goods_people_type pe on pe.id = g.people_type_id
         left join goods_new new on new.id = g.goods_new_id
-        where goods_id = #{id}
+        where goods_id = #{goodsId}
     </select>
 </mapper>
